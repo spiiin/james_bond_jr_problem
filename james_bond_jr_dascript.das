@@ -2,8 +2,6 @@ require daslib/apply
 require daslib/algorithm
 
 typedef FieldPathInfo = tuple<field:int[16]; fieldFrom:int[16];  rate:int>
-struct Field
-    field: int[16]
 
 //1
 //var source=[[int[16] 1; 2; 3; 4; 4; 1; 2; 3; 3; 4; 1; 2; 2; 3; 4; 1]]
@@ -23,7 +21,7 @@ var target=[[int[16] 4;3;4;2; 3;1;2;4; 4;2;4;3; 2;4;3;1]]
 
 var zeros = [[int[16] 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0]]
 
-var openHash : table<int; bool>
+var openHash : table<int>
 
 def shift(var v:int[16]; i1,i2,i3,i4:int)
     var temp = v[i1]
@@ -106,13 +104,13 @@ def openv(v: FieldPathInfo?; var open:array<FieldPathInfo?>; var closed:array<Fi
         var childHash = hash(val)
         if !key_exists(openHash, childHash)
             res |> push <| new [[FieldPathInfo val, vert, rate(val)]]
-            openHash[childHash] = true
+            openHash |> insert <| childHash
     return <-res
 
 def search()
     var open, closed: array<FieldPathInfo?>
     var i = 0
-    openHash[hash(source)] = true
+    openHash |> insert <| hash(source)
     open |> push <| new [[FieldPathInfo source, zeros, rate(source)]]
     while length(open) > 0
         i++
@@ -134,23 +132,22 @@ def search()
 
 def extract(var closed: array<FieldPathInfo?>)
     var last = target
-    var result : array<Field>
-    result |> emplace <| [[Field field=target]]
+    var result : array<int[16]>
+    result |> emplace <| target
     while !same(last, zeros)
         for x in closed
             var el = x.field
             var next = x.fieldFrom
             if same(el, last)
-                result |> emplace <| [[Field field=next]]
+                result |> emplace <| last
                 last = next
                 //closed |> erase <| x
                 break
     result |> pop
-    reverse(result)
     return <- result
 
 [export]
 def main
     var dif <- extract(search())
     for i in range(length(dif)-1)
-        print("{dif[i].field} -> {dif[i+1].field}\n")
+        print("{dif[length(dif)-1-i]}\n")
