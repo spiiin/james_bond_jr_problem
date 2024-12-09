@@ -1,0 +1,16 @@
+/fsharp/james_bond_jr_fsharp/bin/*
+/fsharp/james_bond_jr_fsharp/obj/*
+/fsharp/james_bond_jr_fsharp/.vs/*
+/fsharp/james_bond_jr_fsharp_typeprovider/ConsoleApp1/obj/*
+/fsharp/james_bond_jr_fsharp_typeprovider/ConsoleApp1/bin/*
+/fsharp/james_bond_jr_fsharp_typeprovider/.*/*
+/fsharp/james_bond_jr_fsharp_typeprovider/packages/*
+/fsharp/james_bond_jr_fsharp_typeprovider/src/MyProvider2.DesignTime/bin/*
+/fsharp/james_bond_jr_fsharp_typeprovider/src/MyProvider2.DesignTime/obj/*
+/fsharp/james_bond_jr_fsharp_typeprovider/src/MyProvider2.Runtime/bin/*
+/fsharp/james_bond_jr_fsharp_typeprovider/src/MyProvider2.Runtime/obj/*
+/fsharp/james_bond_jr_fsharp_typeprovider/tests/MyProvider2.Tests/*
+/fsharp/james_bond_jr_fsharp_typeprovider/paket-files/*
+/fsharp/james_bond_jr_visualize/bin/*
+/fsharp/james_bond_jr_visualize/obj/*
+/fsharp/james_bond_jr_visualize/.*/*
